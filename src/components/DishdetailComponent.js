@@ -27,7 +27,11 @@ class DishDetail extends Component {
         const Comments = comments.map((comment) => 
             <div key={comment.id}>
                 <li className="mb-3 mt-3">{comment.comment}</li>
-                <li className="mb-3 mt-3">-- {comment.author} , {comment.date}</li>
+                <li className="mb-3 mt-3">-- {comment.author} , {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit"
+                }).format(new Date(Date.parse(comment.date)))}</li>
             </div>
         );
         
