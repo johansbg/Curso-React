@@ -23,8 +23,6 @@ import { Link } from 'react-router-dom';
               </div>
             );
         });
-
-        console.log('Menu Component render is invoked');
         
         return (
             <div className="container">
