@@ -6,7 +6,7 @@ function About(props) {
 
     function RenderLeader({leaders}){
         return(
-            <div>
+            <React.Fragment>
                 {leaders.map((leader) => {
                     return (
                         <div key={leader.id} className="col-12 mt-5">
@@ -23,7 +23,7 @@ function About(props) {
                         </div>
                     );
                 })}
-            </div>
+            </React.Fragment>
         );
     };
 
