@@ -62,7 +62,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
                             <Row className="form-group">
                                 <Label htmlFor="firstname" xs={12}>Rating</Label>
                                 <Col xs={12}>
-                                    <Control.select model=".Rating" name="Rating"
+                                    <Control.select model=".rating" name="Rating"
                                         className="custom-select">
                                         <option selected="true" disabled="disabled">Select rating</option>
                                         <option value='1' >1</option>
