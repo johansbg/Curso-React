@@ -80,7 +80,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
                     <ModalBody>
                         <LocalForm onSubmit={(values) => handleSubmit(values)}>
                             <Row className="form-group">
-                                <Label htmlFor="firstname" xs={12}>Rating</Label>
+                                <Label htmlFor="rating" xs={12}>Rating</Label>
                                 <Col xs={12}>
                                     <Control.select model=".rating" name="Rating"
                                         className="custom-select">
