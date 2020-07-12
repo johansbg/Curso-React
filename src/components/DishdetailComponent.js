@@ -21,37 +21,44 @@ const minLength = (len) => (val) => val && (val.length >= len);
         );
     }
 
-    function RenderComments({comments}){
-        return (
-            <div className="col-12 col-md-5 m-1">
-                <h4>Comments</h4>
-                <ul className="list-unstyled">
-                    {comments.map((comment) => {
-                        return(
-                            <li key={comment.id} className="mb-3 mt-3">
-                            <p>{comment.comment}</p>
-                            <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { 
-                                year: 'numeric', 
-                                month: 'short', 
-                                day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                            </li>
-                        );
-                    })}
-                </ul>
-                <CommentForm />
-            </div>
-        );
+    function RenderComments({comments , addComment, dishId}){
+        if (comments != null)
+            return (
+                <div className="col-12 col-md-5 m-1">
+                    <h4>Comments</h4>
+                    <ul className="list-unstyled">
+                        {comments.map((comment) => {
+                            return(
+                                <li key={comment.id} className="mb-3 mt-3">
+                                <p>{comment.comment}</p>
+                                <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'short', 
+                                    day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <CommentForm dishId={dishId} addComment={addComment} />
+                </div>
+            );
+        else   
+            return (
+                <div></div> 
+            );
     }
 
-    function CommentForm() {
+    
+
+    function CommentForm({dishId,addComment}) {
+        const [modal, setModal] = React.useState(false);
+
+        const toggle = () => setModal(!modal);
 
         function handleSubmit(values) {
-            console.log("curren State is: "+ JSON.stringify(values));
-            alert("curren State is: "+ JSON.stringify(values));
+            toggle();
+            addComment(dishId, values.rating, values.author, values.comment );
         }
-        const [modal, setModal] = React.useState(false);
-        
-        const toggle = () => setModal(!modal);
         return (
             <div>
                 <Button  outline onClick={toggle}><span className="fa fa-pencil"></span> Submit Comment</Button>
@@ -134,7 +141,9 @@ const minLength = (len) => (val) => val && (val.length >= len);
                     </div>
                     <div className="row">
                         <RenderDish dish={props.dish} />
-                        <RenderComments comments={props.comments} />
+                        <RenderComments comments={props.comments}
+                            addComment={props.addComment}
+                            dishId={props.dish.id} />
                     </div>
                 </div>
             );
